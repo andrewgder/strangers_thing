@@ -13,8 +13,6 @@ export async function getPosts() {
 }
 
 export async function createAccount(username, password) {
-  console.log("username1: ", username);
-  console.log("password1: ", password);
   const credentials = JSON.stringify({
     user: {
       username: username,
