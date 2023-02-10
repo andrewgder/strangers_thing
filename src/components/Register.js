@@ -13,10 +13,7 @@ const Register = () => {
           event.preventDefault();
 
           try {
-            await createAccount({
-              username,
-              password,
-            });
+            await createAccount(username, password);
           } catch (err) {
             console.error(err);
           } finally {

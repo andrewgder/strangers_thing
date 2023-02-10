@@ -13,17 +13,21 @@ export async function getPosts() {
 }
 
 export async function createAccount(username, password) {
+  console.log("username1: ", username);
+  console.log("password1: ", password);
+  const credentials = JSON.stringify({
+    user: {
+      username: username,
+      password: password,
+    },
+  });
+  console.log("Json test:", test);
   fetch(`${BASE_URL}/users/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      user: {
-        username: username,
-        password: password,
-      },
-    }),
+    body: credentials,
   })
     .then((response) => response.json())
     .then((result) => {
