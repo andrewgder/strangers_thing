@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import { createAccount } from "../api";
+import { login } from "../api";
 
-const Register = () => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   return (
     <>
-      <h2> Create account form</h2>
+      <h2> Login Form</h2>
       <form
-        id="createAccount"
+        id="login"
         onSubmit={async (event) => {
           // write code here
           event.preventDefault();
           try {
-            const result = await createAccount(username, password);
+            const result = await login();
             console.log(result);
             alert(result);
           } catch (err) {
@@ -42,14 +42,10 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <label>
-          Confirm Password:
-          <input type="password" name="confirmPassword" />
-        </label>
-        <button name="createAccount">Create Account</button>
+        <button name="login">Login</button>
       </form>
     </>
   );
 };
 
-export default Register;
+export default Login;

@@ -19,7 +19,7 @@ export async function createAccount(username, password) {
       password: password,
     },
   });
-  console.log("Json test:", test);
+
   fetch(`${BASE_URL}/users/register`, {
     method: "POST",
     headers: {
@@ -29,7 +29,29 @@ export async function createAccount(username, password) {
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log(result);
+      console.log("the register result", result);
+    })
+    .catch(console.error);
+}
+
+export async function login() {
+  const credentials = JSON.stringify({
+    user: {
+      username: "andrewgder",
+      password: "123456",
+    },
+  });
+
+  fetch(`${BASE_URL}/users/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: credentials,
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      console.log("the login result", result);
     })
     .catch(console.error);
 }

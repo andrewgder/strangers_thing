@@ -1,6 +1,7 @@
 import "./App.css";
 import Posts from "./components/Posts";
 import Register from "./components/Register";
+import Login from "./components/Login";
 import React from "react";
 
 function App() {
@@ -9,9 +10,12 @@ function App() {
       <div className="App">
         <Posts></Posts>
       </div>
-      <aside className="Register">
+      <div className="register">
         <Register></Register>
-      </aside>
+      </div>
+      <div className="login">
+        <Login></Login>
+      </div>
     </>
   );
 }
