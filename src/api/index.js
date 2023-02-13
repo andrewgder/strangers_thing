@@ -34,11 +34,12 @@ export async function createAccount(username, password) {
     .catch(console.error);
 }
 
-export async function login() {
+export async function login(username, password) {
+  console.log(username, password);
   const credentials = JSON.stringify({
     user: {
-      username: "andrewgder",
-      password: "123456",
+      username: username,
+      password: password,
     },
   });
 

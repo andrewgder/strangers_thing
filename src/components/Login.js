@@ -4,7 +4,6 @@ import { login } from "../api";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
   return (
     <>
       <h2> Login Form</h2>
@@ -14,7 +13,7 @@ const Login = () => {
           // write code here
           event.preventDefault();
           try {
-            const result = await login();
+            const result = await login(username, password);
             console.log(result);
             alert(result);
           } catch (err) {
