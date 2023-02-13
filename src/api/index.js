@@ -51,6 +51,8 @@ export async function login() {
   })
     .then((response) => response.json())
     .then((result) => {
+      localStorage.setItem("token", result.data.token);
+      console.log("token is:", localStorage.getItem("token"));
       console.log("the login result", result);
     })
     .catch(console.error);

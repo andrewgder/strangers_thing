@@ -4,6 +4,7 @@ import { login } from "../api";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
   return (
     <>
       <h2> Login Form</h2>
