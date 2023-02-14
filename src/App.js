@@ -16,9 +16,7 @@ function App() {
       <div className="App">
         <Posts></Posts>
       </div>
-      <div className="register">
-        <Register></Register>
-      </div>
+      <div className="register">{!userToken && <Register></Register>}</div>
       <div className="forms">
         {userToken ? (
           <Logout userToken={userToken} setUserToken={setUserToken}></Logout>
