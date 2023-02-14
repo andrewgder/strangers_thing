@@ -8,7 +8,6 @@ const Login = (props) => {
 
   useEffect(() => {
     if (!loginStatus) {
-      localStorage.clear();
       // perform any other logout related actions here
     }
   }, [loginStatus]);
@@ -25,14 +24,13 @@ const Login = (props) => {
               event.preventDefault();
               try {
                 const result = await login(username, password);
-                console.log(result);
-                alert(result);
+                props.setUserToken("update");
               } catch (err) {
                 console.error(err);
               } finally {
                 setPassword("");
                 setUsername("");
-                props.setUserToken(localStorage.getItem("token"));
+
                 setLoginStatus(true);
               }
             }}

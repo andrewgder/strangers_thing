@@ -8,13 +8,7 @@ import React, { useState, useEffect } from "react";
 function App() {
   const [userToken, setUserToken] = useState(localStorage.getItem("token"));
 
-  useEffect(() => {
-    if (userToken) {
-      localStorage.getItem("token");
-    } else {
-      setUserToken(localStorage.clear());
-    }
-  }, [userToken]);
+  useEffect(() => {}, [userToken]);
 
   return (
     <>

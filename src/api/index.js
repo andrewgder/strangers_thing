@@ -52,9 +52,10 @@ export async function login(username, password) {
   })
     .then((response) => response.json())
     .then((result) => {
-      localStorage.setItem("token", result.data.token);
+      const newToken = localStorage.setItem("token", result.data.token);
       console.log("token is:", localStorage.getItem("token"));
       console.log("the login result", result);
+      return newToken;
     })
     .catch(console.error);
 }

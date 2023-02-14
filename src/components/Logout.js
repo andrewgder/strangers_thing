@@ -5,13 +5,16 @@ const Logout = (props) => {
 
   useEffect(() => {
     if (isLoggedOut) {
-      localStorage.clear();
+      console.log("the user token should be cleared: ", props.userToken);
       // perform any other logout related actions here
     }
   }, [isLoggedOut]);
 
   const handleLogout = () => {
     console.log("you successfully logged out");
+    props.setUserToken("");
+    console.log("the user token is now: ", props.userToken);
+    localStorage.clear();
     setIsLoggedOut(true);
   };
   return (
