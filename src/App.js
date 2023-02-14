@@ -3,10 +3,18 @@ import Posts from "./components/Posts";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 function App() {
-  const userToken = localStorage.getItem("token");
+  const [userToken, setUserToken] = useState(localStorage.getItem("token"));
+
+  useEffect(() => {
+    if (userToken) {
+      localStorage.getItem("token");
+    } else {
+      setUserToken(localStorage.clear());
+    }
+  }, [userToken]);
 
   return (
     <>
@@ -17,11 +25,12 @@ function App() {
       <div className="register">
         <Register></Register>
       </div>
-      <div className="login">
-        <Login></Login>
-      </div>
-      <div className="logout">
-        <Logout></Logout>
+      <div className="forms">
+        {userToken ? (
+          <Logout userToken={userToken} setUserToken={setUserToken}></Logout>
+        ) : (
+          <Login userToken={userToken} setUserToken={setUserToken}></Login>
+        )}
       </div>
     </>
   );

@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const Logout = () => {
+const Logout = (props) => {
+  const [isLoggedOut, setIsLoggedOut] = useState(false);
+
+  useEffect(() => {
+    if (isLoggedOut) {
+      localStorage.clear();
+      // perform any other logout related actions here
+    }
+  }, [isLoggedOut]);
+
+  const handleLogout = () => {
+    console.log("you successfully logged out");
+    setIsLoggedOut(true);
+  };
   return (
-    <button name="logout">Logout</button>
-    //   localStorage.clear();
+    <>
+      {!isLoggedOut && (
+        <button name="logout" onClick={handleLogout}>
+          Logout
+        </button>
+      )}
+    </>
   );
 };
 
