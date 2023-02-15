@@ -59,3 +59,35 @@ export async function login(username, password) {
     })
     .catch(console.error);
 }
+
+export async function createPost(
+  title,
+  description,
+  price,
+  location,
+  willDeliver
+) {
+  const token = localStorage.getItem("token");
+  console.log("create post function token is:", token);
+  fetch(`${BASE_URL}/posts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      post: {
+        title: title,
+        description: description,
+        price: price,
+        location: location,
+        willDeliver: willDeliver,
+      },
+    }),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
+    })
+    .catch(console.error);
+}

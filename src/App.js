@@ -3,6 +3,7 @@ import Posts from "./components/Posts";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
+import CreatePost from "./components/CreatePost";
 import React, { useState, useEffect } from "react";
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
         ) : (
           <Login userToken={userToken} setUserToken={setUserToken}></Login>
         )}
+      </div>
+      <div>
+        <CreatePost></CreatePost>
       </div>
     </>
   );
