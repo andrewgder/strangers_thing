@@ -43,7 +43,7 @@ export async function login(username, password) {
     },
   });
 
-  fetch(`${BASE_URL}/users/login`, {
+  await fetch(`${BASE_URL}/users/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -52,10 +52,16 @@ export async function login(username, password) {
   })
     .then((response) => response.json())
     .then((result) => {
-      const newToken = localStorage.setItem("token", result.data.token);
-      console.log("token is:", localStorage.getItem("token"));
+      if (result.success) {
+        const newToken = localStorage.setItem("token", result.data.token);
+        const tokenValue = localStorage.getItem("token");
+        console.log("token is:", tokenValue);
+        console.log(result.data.message);
+      } else {
+        console.log(result.error.message);
+        alert(result.error.message);
+      }
       console.log("the login result", result);
-      return newToken;
     })
     .catch(console.error);
 }

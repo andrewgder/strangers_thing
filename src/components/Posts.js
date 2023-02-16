@@ -1,7 +1,7 @@
 import { getPosts } from "../api";
 import { useEffect, useState } from "react";
 
-const Posts = () => {
+const Posts = (props) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -11,6 +11,13 @@ const Posts = () => {
     };
     fetchData();
   }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      const allPosts = await getPosts();
+      setPosts(allPosts.data.posts);
+    };
+    fetchData();
+  }, [props.posts]);
 
   return (
     <>

@@ -4,18 +4,33 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import CreatePost from "./components/CreatePost";
+import { getPosts } from "./api";
 import React, { useState, useEffect } from "react";
 
 function App() {
   const [userToken, setUserToken] = useState(localStorage.getItem("token"));
+  const [posts, setPosts] = useState([]);
 
-  useEffect(() => {}, [userToken]);
+  useEffect(() => {
+    if (userToken) {
+    } else {
+      setUserToken("");
+    }
+  }, [userToken]);
+
+  // useEffect(() => {
+  //   console.log("New post coming in:", posts);
+  //   // const fetchData = async () => {
+  //   //   const allPosts = await getPosts();
+  //   //   setPosts(allPosts.data.posts);
+  //   getPosts();
+  // }, [posts]);
 
   return (
     <>
       {console.log("App.JS Page token:", userToken)}
       <div className="App">
-        <Posts></Posts>
+        <Posts setPost={setPosts} posts={posts}></Posts>
       </div>
       <div className="register">{!userToken && <Register></Register>}</div>
       <div className="forms">
@@ -26,7 +41,9 @@ function App() {
         )}
       </div>
       <div>
-        <CreatePost></CreatePost>
+        {userToken && (
+          <CreatePost setPosts={setPosts} posts={posts}></CreatePost>
+        )}
       </div>
     </>
   );

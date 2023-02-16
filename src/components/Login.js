@@ -24,14 +24,14 @@ const Login = (props) => {
               event.preventDefault();
               try {
                 const result = await login(username, password);
+                console.log(result);
                 props.setUserToken("update");
+                setLoginStatus(true);
               } catch (err) {
                 console.error(err);
               } finally {
                 setPassword("");
                 setUsername("");
-
-                setLoginStatus(true);
               }
             }}
           >
