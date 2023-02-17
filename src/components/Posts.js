@@ -1,8 +1,11 @@
 import { getPosts } from "../api";
 import { useEffect, useState } from "react";
+import { BASE_URL } from "../api";
+import { DeletePost } from "./Delete";
 
 const Posts = (props) => {
   const [posts, setPosts] = useState([]);
+  const [deletedPost, setDeletedPost] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,6 +21,20 @@ const Posts = (props) => {
     };
     fetchData();
   }, [props.posts]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const allPosts = await getPosts();
+      setPosts(allPosts.data.posts);
+    };
+    fetchData();
+  }, [deletedPost]);
+
+  const handleSubmit = async (e) => {
+    await DeletePost(e);
+    console.log("set posts to:");
+    setDeletedPost(e);
+  };
 
   return (
     <>
@@ -39,6 +56,9 @@ const Posts = (props) => {
               ? " Will NOT Deliver"
               : " Will Deliver"}
           </p>
+          <button onClick={() => handleSubmit(post._id)}>
+            Delete (can only delete active user's)
+          </button>
         </div>
       ))}
     </>

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { createPost } from "../api";
+import React, { useState } from "react";
 import { BASE_URL } from "../api";
 
 const CreatePost = (props) => {
@@ -74,6 +73,7 @@ const CreatePost = (props) => {
             name="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -83,6 +83,7 @@ const CreatePost = (props) => {
             name="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -92,6 +93,7 @@ const CreatePost = (props) => {
             name="price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -101,6 +103,7 @@ const CreatePost = (props) => {
             name="location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
+            required
           />
         </label>
         <label>
