@@ -14,21 +14,25 @@ const Posts = (props) => {
     };
     fetchData();
   }, []);
-  useEffect(() => {
-    const fetchData = async () => {
-      const allPosts = await getPosts();
-      setPosts(allPosts.data.posts);
-    };
-    fetchData();
-  }, [props.posts]);
+  useEffect(
+    () => {
+      const fetchData = async () => {
+        const allPosts = await getPosts();
+        setPosts(allPosts.data.posts);
+      };
+      fetchData();
+    },
+    [props.posts],
+    [deletedPost]
+  );
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const allPosts = await getPosts();
-      setPosts(allPosts.data.posts);
-    };
-    fetchData();
-  }, [deletedPost]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const allPosts = await getPosts();
+  //     setPosts(allPosts.data.posts);
+  //   };
+  //   fetchData();
+  // }, [deletedPost]);
 
   const handleSubmit = async (e) => {
     await DeletePost(e);
@@ -56,9 +60,11 @@ const Posts = (props) => {
               ? " Will NOT Deliver"
               : " Will Deliver"}
           </p>
-          <button onClick={() => handleSubmit(post._id)}>
-            Delete (can only delete active user's)
-          </button>
+          {post.author._id === localStorage.getItem("token") && (
+            <button onClick={() => handleSubmit(post._id)}>
+              Delete (can only delete active user's)
+            </button>
+          )}
         </div>
       ))}
     </>

@@ -4,6 +4,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import CreatePost from "./components/CreatePost";
+import MyPosts from "./components/MyPosts";
 import { getPosts } from "./api";
 import React, { useState, useEffect } from "react";
 
@@ -31,6 +32,9 @@ function App() {
       {console.log("App.JS Page token:", userToken)}
       <div className="App">
         <Posts setPost={setPosts} posts={posts}></Posts>
+      </div>
+      <div className="myPosts">
+        <MyPosts setPost={setPosts} posts={posts}></MyPosts>
       </div>
       <div className="register">{!userToken && <Register></Register>}</div>
       <div className="forms">

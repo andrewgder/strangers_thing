@@ -12,6 +12,22 @@ export async function getPosts() {
   }
 }
 
+export async function getMyPosts() {
+  try {
+    const response = await fetch(`${BASE_URL}/posts`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
 export async function createAccount(username, password) {
   const credentials = JSON.stringify({
     user: {
@@ -57,6 +73,7 @@ export async function login(username, password) {
         const tokenValue = localStorage.getItem("token");
         console.log("token is:", tokenValue);
         console.log(result.data.message);
+        console.log(result);
       } else {
         console.log(result.error.message);
         alert(result.error.message);
