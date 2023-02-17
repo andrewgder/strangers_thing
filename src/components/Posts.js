@@ -60,10 +60,8 @@ const Posts = (props) => {
               ? " Will NOT Deliver"
               : " Will Deliver"}
           </p>
-          {post.author._id === localStorage.getItem("token") && (
-            <button onClick={() => handleSubmit(post._id)}>
-              Delete (can only delete active user's)
-            </button>
+          {post.isAuthor == true && (
+            <button onClick={() => handleSubmit(post._id)}>Delete Post</button>
           )}
         </div>
       ))}

@@ -64,9 +64,7 @@ const MyPosts = (props) => {
               active:
               {post.active}
             </p>
-            <button onClick={() => handleSubmit(post._id)}>
-              Delete (can only delete active user's)
-            </button>
+            <button onClick={() => handleSubmit(post._id)}>Delete Post</button>
           </div>
         ))}
     </>
