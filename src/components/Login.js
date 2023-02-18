@@ -51,6 +51,7 @@ const Login = (props) => {
                 name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </label>
             <button name="login">Login</button>

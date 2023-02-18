@@ -40,11 +40,11 @@ const MyPosts = (props) => {
 
   return (
     <>
-      <h1>The active user's Posts</h1>
       {posts
         .filter((post) => post.isAuthor == true)
         .map((post) => (
           <div className="Posts" key={post._id}>
+            <h1>{post.author.username}'s Posts</h1>
             <h2>{post.title} </h2>
             <p>Posted By: {post.author.username}</p>
             <h3>
