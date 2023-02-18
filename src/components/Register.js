@@ -48,18 +48,6 @@ const Register = () => {
             }
           }
         }}
-
-        //   try {
-        //     const result = await createAccount(username, password);
-        //     console.log(result);
-        //     alert(result);
-        //   } catch (err) {
-        //     console.error(err);
-        //   } finally {
-        //     setPassword("");
-        //     setUsername("");
-        //   }
-        // }}
       >
         <label>
           Username:

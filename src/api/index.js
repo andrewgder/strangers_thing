@@ -120,3 +120,24 @@ export async function createPost(
     })
     .catch(console.error);
 }
+
+export async function sendUserMessage(postID, message) {
+  const token = localStorage.getItem("token");
+  fetch(`${BASE_URL}/posts/${postID}/messages`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      message: {
+        content: message,
+      },
+    }),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
+    })
+    .catch(console.error);
+}

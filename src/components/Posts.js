@@ -1,4 +1,4 @@
-import { getPosts } from "../api";
+import { getMyPosts, sendUserMessage } from "../api";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../api";
 import { DeletePost } from "./Delete";
@@ -6,38 +6,34 @@ import { DeletePost } from "./Delete";
 const Posts = (props) => {
   const [posts, setPosts] = useState([]);
   const [deletedPost, setDeletedPost] = useState([]);
+  const [messageState, setMessageState] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
-      const allPosts = await getPosts();
+      const allPosts = await getMyPosts();
       setPosts(allPosts.data.posts);
     };
     fetchData();
   }, []);
-  useEffect(
-    () => {
-      const fetchData = async () => {
-        const allPosts = await getPosts();
-        setPosts(allPosts.data.posts);
-      };
-      fetchData();
-    },
-    [props.posts],
-    [deletedPost]
-  );
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const allPosts = await getPosts();
-  //     setPosts(allPosts.data.posts);
-  //   };
-  //   fetchData();
-  // }, [deletedPost]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const allPosts = await getMyPosts();
+      setPosts(allPosts.data.posts);
+    };
+    fetchData();
+  }, [props.posts, deletedPost]);
 
   const handleSubmit = async (e) => {
     await DeletePost(e);
-    console.log("set posts to:");
     setDeletedPost(e);
+  };
+  const handleMessageChange = (postId, message) => {
+    setMessageState({ ...messageState, [postId]: message });
+  };
+
+  const sendMessage = async (postID, message) => {
+    console.log("Post ID:", postID, "Message:", message);
+    await sendUserMessage(postID, message);
   };
 
   return (
@@ -62,6 +58,29 @@ const Posts = (props) => {
           </p>
           {post.isAuthor == true && (
             <button onClick={() => handleSubmit(post._id)}>Delete Post</button>
+          )}
+          {post.isAuthor == false && (
+            <>
+              <label>
+                Send Message:
+                <br></br>{" "}
+                <textarea
+                  name="message"
+                  value={messageState[post._id]}
+                  rows={4}
+                  cols={40}
+                  onChange={(e) =>
+                    handleMessageChange(post._id, e.target.value)
+                  }
+                />
+              </label>
+              <br></br>
+              <button
+                onClick={() => sendMessage(post._id, messageState[post._id])}
+              >
+                Send Message
+              </button>
+            </>
           )}
         </div>
       ))}

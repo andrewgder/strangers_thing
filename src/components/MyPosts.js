@@ -1,4 +1,3 @@
-import { getPosts } from "../api";
 import { useEffect, useState } from "react";
 import { BASE_URL, getMyPosts } from "../api";
 import { DeletePost } from "./Delete";
@@ -7,11 +6,15 @@ const MyPosts = (props) => {
   const [posts, setPosts] = useState([]);
   const [deletedPost, setDeletedPost] = useState([]);
   const [username, setUsername] = useState("");
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const allPosts = await getMyPosts();
       setPosts(allPosts.data.posts);
+      console.log(posts);
+      setMessages(posts.messages);
+      console.log(messages);
       //   console.log("username:", allPosts.data.username);
       //   localStorage.setItem("username", allPosts.data.username);
     };
@@ -21,17 +24,10 @@ const MyPosts = (props) => {
     const fetchData = async () => {
       const allPosts = await getMyPosts();
       setPosts(allPosts.data.posts);
+      setMessages(allPosts.data.posts.messages);
     };
     fetchData();
-  }, [props.posts]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const allPosts = await getMyPosts();
-      setPosts(allPosts.data.posts);
-    };
-    fetchData();
-  }, [deletedPost]);
+  }, [props.posts, deletedPost]);
 
   const handleSubmit = async (e) => {
     await DeletePost(e);
@@ -61,8 +57,12 @@ const MyPosts = (props) => {
                 : " Will Deliver"}
             </p>
             <p>
-              active:
-              {post.active}
+              {/* Messages:
+              {messages.map((message, index) => (
+                <ul>
+                  <li key={index}>{message}</li>
+                </ul>
+              ))} */}
             </p>
             <button onClick={() => handleSubmit(post._id)}>Delete Post</button>
           </div>
