@@ -12,9 +12,6 @@ const MyPosts = (props) => {
     const fetchData = async () => {
       const allPosts = await getMyPosts();
       setPosts(allPosts.data.posts);
-      console.log(posts);
-      setMessages(posts.messages);
-      console.log(messages);
       //   console.log("username:", allPosts.data.username);
       //   localStorage.setItem("username", allPosts.data.username);
     };
