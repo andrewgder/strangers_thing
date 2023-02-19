@@ -12,6 +12,7 @@ const MyPosts = (props) => {
     const fetchData = async () => {
       const allPosts = await getMyPosts();
       setPosts(allPosts.data.posts);
+      console.log(allPosts.data.posts);
       //   console.log("username:", allPosts.data.username);
       //   localStorage.setItem("username", allPosts.data.username);
     };
@@ -21,10 +22,18 @@ const MyPosts = (props) => {
     const fetchData = async () => {
       const allPosts = await getMyPosts();
       setPosts(allPosts.data.posts);
-      setMessages(allPosts.data.posts.messages);
+      //   setMessages(allPosts.data.posts.messages);
     };
     fetchData();
   }, [props.posts, deletedPost]);
+
+  useEffect(() => {
+    const messageArray = posts.filter(
+      (post) => post.isAuthor == true && post.messages.length >= 1
+    );
+    console.log("these are user's messages", messageArray);
+    setMessages(messageArray);
+  }, [posts]);
 
   const handleSubmit = async (e) => {
     await DeletePost(e);
@@ -54,12 +63,20 @@ const MyPosts = (props) => {
                 : " Will Deliver"}
             </p>
             <p>
-              {/* Messages:
-              {messages.map((message, index) => (
+              Messages:{" "}
+              {post.messages.length === 0 ? (
+                "No Messages"
+              ) : (
                 <ul>
-                  <li key={index}>{message}</li>
+                  {post.messages.map((message, index) => (
+                    // console.log("message 1")
+                    <li key={index} style={{ marginBottom: "10px" }}>
+                      {"Message: "} {message.content} <br></br>
+                      {"From: "} {message.fromUser.username}
+                    </li>
+                  ))}
                 </ul>
-              ))} */}
+              )}
             </p>
             <button onClick={() => handleSubmit(post._id)}>Delete Post</button>
           </div>
