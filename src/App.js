@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import CreatePost from "./components/CreatePost";
 import MyPosts from "./components/MyPosts";
+import Search from "./components/Search";
 import { getPosts } from "./api";
 import React, { useState, useEffect } from "react";
 
@@ -31,6 +32,7 @@ function App() {
     <>
       {console.log("App.JS Page token:", userToken)}
       <div className="App">
+        <Search></Search>
         <Posts setPost={setPosts} posts={posts}></Posts>
       </div>
       <div className="myPosts">
