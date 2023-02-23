@@ -38,7 +38,7 @@ const Posts = (props) => {
 
   return (
     <>
-      <h1>All Posts</h1>
+      <h1> Posts</h1>
       {posts.map((post) => (
         <div className="Posts" key={post._id}>
           <h2>{post.title}</h2>

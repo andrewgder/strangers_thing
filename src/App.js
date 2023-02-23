@@ -12,13 +12,20 @@ import React, { useState, useEffect } from "react";
 function App() {
   const [userToken, setUserToken] = useState(localStorage.getItem("token"));
   const [posts, setPosts] = useState([]);
+  const [loggedIn, setLoggedIn] = useState("");
 
   useEffect(() => {
     if (userToken) {
     } else {
       setUserToken("");
     }
-  }, [userToken]);
+    if (localStorage.getItem("username") === null) {
+      setLoggedIn("");
+    } else {
+      setLoggedIn(localStorage.getItem("username"));
+    }
+    console.log(loggedIn, "is active");
+  }, [userToken, loggedIn]);
 
   // useEffect(() => {
   //   console.log("New post coming in:", posts);
@@ -30,20 +37,41 @@ function App() {
 
   return (
     <>
+      {loggedIn ? (
+        <h1>Hello {loggedIn} Welcome to Stranger's Things </h1>
+      ) : (
+        <h1>Welcome to Stranger's Things</h1>
+      )}
       {console.log("App.JS Page token:", userToken)}
       <div className="App">
         <Search></Search>
         <Posts setPost={setPosts} posts={posts}></Posts>
       </div>
       <div className="myPosts">
-        <MyPosts setPost={setPosts} posts={posts}></MyPosts>
+        {loggedIn && (
+          <MyPosts
+            loggedIn={loggedIn}
+            setPost={setPosts}
+            posts={posts}
+          ></MyPosts>
+        )}
       </div>
       <div className="register">{!userToken && <Register></Register>}</div>
       <div className="forms">
         {userToken ? (
-          <Logout userToken={userToken} setUserToken={setUserToken}></Logout>
+          <Logout
+            userToken={userToken}
+            setUserToken={setUserToken}
+            loggedIn={loggedIn}
+            setLoggedIn={setLoggedIn}
+          ></Logout>
         ) : (
-          <Login userToken={userToken} setUserToken={setUserToken}></Login>
+          <Login
+            userToken={userToken}
+            setUserToken={setUserToken}
+            loggedIn={loggedIn}
+            setLoggedIn={setLoggedIn}
+          ></Login>
         )}
       </div>
       <div>

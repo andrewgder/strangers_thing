@@ -5,7 +5,6 @@ import { DeletePost } from "./Delete";
 const MyPosts = (props) => {
   const [posts, setPosts] = useState([]);
   const [deletedPost, setDeletedPost] = useState([]);
-  const [username, setUsername] = useState("");
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -42,11 +41,11 @@ const MyPosts = (props) => {
 
   return (
     <>
+      <h1>{props.loggedIn}'s Posts</h1>
       {posts
         .filter((post) => post.isAuthor == true)
         .map((post) => (
           <div className="Posts" key={post._id}>
-            <h1>{post.author.username}'s Posts</h1>
             <h2>{post.title} </h2>
             <p>Posted By: {post.author.username}</p>
             <h3>

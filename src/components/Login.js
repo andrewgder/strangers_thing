@@ -27,6 +27,9 @@ const Login = (props) => {
                 console.log(result);
                 props.setUserToken("update");
                 setLoginStatus(true);
+                localStorage.setItem("username", username);
+                props.setLoggedIn(username);
+                alert("You Successfuly Logged in");
               } catch (err) {
                 console.error(err);
               } finally {

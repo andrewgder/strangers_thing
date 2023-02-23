@@ -16,6 +16,7 @@ const Logout = (props) => {
     console.log("the user token is now: ", props.userToken);
     localStorage.clear();
     setIsLoggedOut(true);
+    alert("You Successfuly Logged Out");
   };
   return (
     <>

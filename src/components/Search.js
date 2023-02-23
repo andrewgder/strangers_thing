@@ -39,7 +39,9 @@ const Search = () => {
 
   return (
     <div>
-      <label>Search: </label>
+      <h2>
+        <label>Search: </label>
+      </h2>
       <input
         type="text"
         placeholder="Search Posts"
