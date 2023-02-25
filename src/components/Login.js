@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { login } from "../api";
+import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!loginStatus) {
@@ -25,11 +27,15 @@ const Login = (props) => {
               try {
                 const result = await login(username, password);
                 console.log("TEST", result);
-                props.setUserToken("update");
-                setLoginStatus(true);
-                localStorage.setItem("username", username);
-                props.setLoggedIn(username);
-                alert("You Successfuly Logged in");
+                if (localStorage.getItem("token")) {
+                  alert("You Successfuly Logged in");
+
+                  // props.setUserToken("update");
+                  setLoginStatus(true);
+                  localStorage.setItem("username", username);
+                  props.setLoggedIn(username);
+                  navigate("/posts");
+                }
               } catch (err) {
                 console.error(err);
               } finally {

@@ -38,7 +38,7 @@ function App() {
 
   return (
     <>
-      {loggedIn ? (
+      {/* {loggedIn ? (
         <h1>Hello {loggedIn} Welcome to Stranger's Things </h1>
       ) : (
         <h1>Welcome to Stranger's Things</h1>
@@ -78,17 +78,67 @@ function App() {
       <div>
         {userToken && (
           <CreatePost setPosts={setPosts} posts={posts}></CreatePost>
-        )}
-      </div>
+        )} */}
+      {/* </div> */}
       <div className="AppNav">
-        <Navbar />
+        <Navbar
+          loggedIn={loggedIn}
+          setLoggedIn={setLoggedIn}
+          setPost={setPosts}
+          posts={posts}
+        />
         <Routes>
-          <Route path="/" element={<Posts />} />
-          <Route path="/posts" element={<Posts />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/"
+            element={
+              <Posts
+                loggedIn={loggedIn}
+                setLoggedIn={setLoggedIn}
+                setPost={setPosts}
+                posts={posts}
+              />
+            }
+          />
+          <Route
+            path="/posts"
+            element={
+              <Posts
+                loggedIn={loggedIn}
+                setLoggedIn={setLoggedIn}
+                setPost={setPosts}
+                posts={posts}
+              />
+            }
+          />
+          <Route path="/search" element={<Search />} />
+
+          <Route
+            path="/login"
+            element={
+              <Login
+                loggedIn={loggedIn}
+                setLoggedIn={setLoggedIn}
+                setPost={setPosts}
+                posts={posts}
+              />
+            }
+          />
           <Route path="/register" element={<Register />} />
-          <Route path="/myposts" element={<MyPosts />} />
-          <Route path="/createpost" element={<CreatePost />} />
+          <Route
+            path="/myposts"
+            element={
+              <MyPosts
+                loggedIn={loggedIn}
+                setLoggedIn={setLoggedIn}
+                setPost={setPosts}
+                posts={posts}
+              />
+            }
+          />
+          <Route
+            path="/createpost"
+            element={<CreatePost setPosts={setPosts} posts={posts} />}
+          />
         </Routes>
       </div>
     </>

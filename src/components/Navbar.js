@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [displayVal, setDisplayVal] = useState(localStorage.getItem("token"));
   useEffect(() => {
     // console.log("token navbar: ", localStorage.getItem("token"));
     setDisplayVal(localStorage.getItem("token"));
-  }, []);
+  }, [props.loggedIn]);
+  const navigate = useNavigate();
+  console.log("display val:", displayVal);
 
   const links = [
     {
@@ -16,8 +19,20 @@ const Navbar = () => {
       shouldDisplay: true,
     },
     {
+      key: "createpost",
+      route: "/createpost",
+      text: "Create Post",
+      shouldDisplay: displayVal,
+    },
+    {
+      key: "search",
+      route: "/search",
+      text: "Search",
+      shouldDisplay: true,
+    },
+    {
       key: "profile",
-      route: "/profile",
+      route: "/myposts",
       text: "Profile",
       shouldDisplay: displayVal,
     },
@@ -29,10 +44,17 @@ const Navbar = () => {
     },
     {
       key: "logout",
-      route: "/login",
+      // route: "/login",
       text: "Log Out",
       shouldDisplay: displayVal,
-      onClick: () => localStorage.clear(),
+      onClick: () => {
+        alert("You Successfuly Logged Out");
+        console.log("you successfully logged out");
+        localStorage.clear();
+        props.setIsLoggedOut(true);
+        alert("You Successfuly Logged Out");
+        navigate("/posts");
+      },
     },
     {
       key: "register",
@@ -44,7 +66,7 @@ const Navbar = () => {
   return (
     <div className="NavBarBody">
       <Link to={"/"} className="NavBarTitle">
-        Welcome
+        Home
       </Link>
       <div className="NavBarMenuItems">
         {links.map((link) => {
