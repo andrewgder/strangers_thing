@@ -6,8 +6,9 @@ import Logout from "./components/Logout";
 import CreatePost from "./components/CreatePost";
 import MyPosts from "./components/MyPosts";
 import Search from "./components/Search";
-import { getPosts } from "./api";
+import Navbar from "./components/Navbar";
 import React, { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [userToken, setUserToken] = useState(localStorage.getItem("token"));
@@ -78,6 +79,17 @@ function App() {
         {userToken && (
           <CreatePost setPosts={setPosts} posts={posts}></CreatePost>
         )}
+      </div>
+      <div className="AppNav">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Posts />} />
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/myposts" element={<MyPosts />} />
+          <Route path="/createpost" element={<CreatePost />} />
+        </Routes>
       </div>
     </>
   );

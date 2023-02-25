@@ -24,7 +24,7 @@ const Login = (props) => {
               event.preventDefault();
               try {
                 const result = await login(username, password);
-                console.log(result);
+                console.log("TEST", result);
                 props.setUserToken("update");
                 setLoginStatus(true);
                 localStorage.setItem("username", username);

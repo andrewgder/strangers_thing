@@ -41,6 +41,7 @@ const Register = () => {
               alert(result);
             } catch (err) {
               console.error(err);
+              alert("Please try again");
             } finally {
               setPassword("");
               setUsername("");
