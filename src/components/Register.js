@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { createAccount } from "../api";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const navigateLogin = useNavigate();
   return (
     <>
       <h2> Create account form</h2>
@@ -38,7 +40,6 @@ const Register = () => {
             try {
               const result = await createAccount(username, password);
               console.log(result);
-              alert(result);
             } catch (err) {
               console.error(err);
               alert("Please try again");
@@ -46,7 +47,10 @@ const Register = () => {
               setPassword("");
               setUsername("");
               setConfirmPassword("");
+              alert("Account Created!");
             }
+            console.log("navigating");
+            navigateLogin("/login");
           }
         }}
       >
