@@ -53,6 +53,8 @@ const Login = (props) => {
                 onChange={(e) => setUsername(e.target.value)}
               />
             </label>
+            <br></br>
+            <br></br>
             <label>
               Password:
               <input
@@ -63,6 +65,8 @@ const Login = (props) => {
                 required
               />
             </label>
+            <br></br>
+            <br></br>
             <button name="login">Login</button>
           </form>
         </>

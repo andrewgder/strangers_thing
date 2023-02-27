@@ -36,3 +36,60 @@
     transform: rotate(360deg);
   }
 }
+
+.NavBarBody {
+  display: flex;
+  background-color: lightblue;
+  align-items: center;
+  text-decoration: none;
+}
+.NavBarMenuItems,
+.menuItems {
+  display: flex;
+  margin: 10px;
+  text-decoration: none;
+}
+* {
+  text-align: center;
+  display: flexbox;
+}
+
+#createAccount {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.NavLink,
+.NavBarTitle {
+  text-decoration: none;
+  color: black;
+}
+
+.createPost {
+  text-decoration: none;
+  color: black;
+  font-style: oblique;
+  font-weight: bold;
+
+  background-color: lightblue;
+  display: flex;
+  justify-content: center;
+}
+
+#createPost {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-self: center;
+}
+
+.createButton {
+  width: 100px;
+  align-self: center;
+}
+
+.Posts {
+  background-color: lightblue;
+  size: 500px;
+}

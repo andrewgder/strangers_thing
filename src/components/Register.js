@@ -64,6 +64,8 @@ const Register = () => {
             required
           />
         </label>
+        <br></br>
+        <br></br>
         <label>
           Password:
           <input
@@ -74,6 +76,8 @@ const Register = () => {
             required
           />
         </label>
+        <br></br>
+        <br></br>
         <label>
           Confirm Password:
           <input
@@ -84,6 +88,8 @@ const Register = () => {
             required
           />
         </label>
+        <br></br>
+        <br></br>
         <button name="createAccount">Create Account</button>
       </form>
     </>

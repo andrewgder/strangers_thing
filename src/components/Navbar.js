@@ -68,12 +68,13 @@ const Navbar = (props) => {
       <Link to={"/"} className="NavBarTitle">
         Home
       </Link>
+
       <div className="NavBarMenuItems">
         {links.map((link) => {
           const { key, route, text, shouldDisplay, onClick = () => {} } = link;
           if (shouldDisplay) {
             return (
-              <div key={key}>
+              <div className="menuItems" key={key}>
                 <Link className="NavLink" to={route} onClick={onClick}>
                   {text}
                 </Link>

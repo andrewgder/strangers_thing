@@ -76,6 +76,7 @@ const CreatePost = (props) => {
             required
           />
         </label>
+
         <label>
           Description:
           <input
@@ -86,6 +87,7 @@ const CreatePost = (props) => {
             required
           />
         </label>
+
         <label>
           Price:
           <input
@@ -96,6 +98,7 @@ const CreatePost = (props) => {
             required
           />
         </label>
+
         <label>
           Location:
           <input
@@ -106,6 +109,7 @@ const CreatePost = (props) => {
             required
           />
         </label>
+
         <label>
           Will Deliver?:
           <select
@@ -117,7 +121,10 @@ const CreatePost = (props) => {
             <option value="false"> No</option>
           </select>
         </label>
-        <button name="createPost">Submit Post</button>
+
+        <button className="createButton" name="createPost">
+          Submit Post
+        </button>
       </form>
     </>
   );

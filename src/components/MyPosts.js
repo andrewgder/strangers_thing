@@ -48,12 +48,12 @@ const MyPosts = (props) => {
           <div className="Posts" key={post._id}>
             <h2>{post.title} </h2>
             <p>Posted By: {post.author.username}</p>
-            <h3>
+            <p>
               Item Description:
               <br />
               {post.description}
-            </h3>
-            <h4>Asking Price: {post.price}</h4>
+            </p>
+            <p>Asking Price: {post.price}</p>
             <p>Location: {post.location}</p>
             <p>
               Delivery:
